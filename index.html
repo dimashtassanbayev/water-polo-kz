@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WaterPolo Shop KZ — Экипировка для водного поло</title>
+  <meta name="description" content="Магазин экипировки для водного поло в Казахстане. Шапочки, мячи, ворота и аксессуары." />
+  <style>
+    /* ── Reset & base ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-deep:   #0a2a5e;
+      --blue-mid:    #1044a3;
+      --blue-light:  #1a6fc4;
+      --blue-pale:   #e8f0fd;
+      --white:       #ffffff;
+      --gray-50:     #f8fafc;
+      --gray-200:    #e2e8f0;
+      --gray-400:    #94a3b8;
+      --gray-700:    #334155;
+      --green:       #16a34a;
+      --green-bg:    #dcfce7;
+      --red:         #dc2626;
+      --red-bg:      #fee2e2;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:   0 4px 16px rgba(0,0,0,.10);
+      --shadow-lg:   0 10px 40px rgba(0,0,0,.18);
+      --radius:      12px;
+      --font:        'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--gray-50);
+      color: var(--gray-700);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ───────────────────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+      color: var(--white);
+      padding: 0 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text strong {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .logo-text span {
+      font-size: .65rem;
+      opacity: .75;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .header-contact {
+      font-size: .8rem;
+      opacity: .85;
+      text-align: right;
+    }
+
+    .header-contact a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* ── Hero banner ─────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, var(--blue-mid) 0%, var(--blue-light) 60%, #2390e0 100%);
+      color: var(--white);
+      padding: 2.5rem 1rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='rgba(255,255,255,.06)' d='M0,60 C360,110 1080,10 1440,60 L1440,120 L0,120 Z'/%3E%3C/svg%3E") bottom/cover no-repeat;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+      position: relative;
+    }
+
+    .hero p {
+      font-size: clamp(.9rem, 2.5vw, 1.1rem);
+      opacity: .88;
+      max-width: 520px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ── Main content ────────────────────────────────────────────── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* ── Filters ─────────────────────────────────────────────────── */
+    .filters-section {
+      margin-bottom: 1.75rem;
+    }
+
+    .filters-label {
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gray-400);
+      margin-bottom: .6rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .filter-btn {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      color: var(--gray-700);
+      border-radius: 999px;
+      padding: .4rem 1rem;
+      font-size: .85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .18s ease;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--blue-light);
+      color: var(--blue-light);
+    }
+
+    .filter-btn.active {
+      background: var(--blue-mid);
+      border-color: var(--blue-mid);
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(16,68,163,.3);
+    }
+
+    /* ── Status bar ──────────────────────────────────────────────── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 1.25rem;
+      min-height: 28px;
+    }
+
+    .product-count {
+      font-size: .85rem;
+      color: var(--gray-400);
+    }
+
+    .product-count strong {
+      color: var(--gray-700);
+    }
+
+    /* ── Loading & error ─────────────────────────────────────────── */
+    .state-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 3.5px solid var(--blue-pale);
+      border-top-color: var(--blue-mid);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .state-box p {
+      color: var(--gray-400);
+      font-size: .95rem;
+    }
+
+    .error-icon { font-size: 2.5rem; }
+
+    /* ── Product grid ────────────────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Product card ────────────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease;
+      border: 1px solid var(--gray-200);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--blue-pale);
+      overflow: hidden;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s ease;
+    }
+
+    .card:hover .card-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .card-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--blue-light);
+      opacity: .35;
+    }
+
+    .badge-stock {
+      position: absolute;
+      top: .6rem;
+      right: .6rem;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: .25rem .6rem;
+      border-radius: 999px;
+    }
+
+    .badge-stock.in  { background: var(--green-bg); color: var(--green); }
+    .badge-stock.out { background: var(--red-bg);   color: var(--red);   }
+
+    .card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+
+    .category-tag {
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      background: var(--blue-pale);
+      color: var(--blue-mid);
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      max-width: 60%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .size-tag {
+      font-size: .75rem;
+      color: var(--gray-400);
+      white-space: nowrap;
+    }
+
+    .card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue-deep);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: .82rem;
+      color: var(--gray-400);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: .75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .card-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--blue-deep);
+      white-space: nowrap;
+    }
+
+    .btn-order {
+      background: var(--blue-mid);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: .5rem 1.1rem;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .18s, transform .12s;
+      white-space: nowrap;
+    }
+
+    .btn-order:hover:not(:disabled) {
+      background: var(--blue-deep);
+      transform: scale(1.02);
+    }
+
+    .btn-order:disabled {
+      background: var(--gray-200);
+      color: var(--gray-400);
+      cursor: not-allowed;
+    }
+
+    /* ── Modal overlay ───────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 20, 50, .6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn .18s ease;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp .22s ease;
+      overflow: hidden;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(24px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: var(--white);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .modal-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .modal-header .modal-product-info {
+      font-size: .78rem;
+      opacity: .8;
+      margin-top: .2rem;
+      line-height: 1.4;
+    }
+
+    .btn-close {
+      background: rgba(255,255,255,.15);
+      border: none;
+      color: var(--white);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+
+    .btn-close:hover { background: rgba(255,255,255,.28); }
+
+    .modal-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .form-group label {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .form-group input,
+    .form-group select {
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      padding: .6rem .85rem;
+      font-size: .95rem;
+      font-family: inherit;
+      color: var(--gray-700);
+      transition: border-color .15s, box-shadow .15s;
+      width: 100%;
+      background: var(--white);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--blue-light);
+      box-shadow: 0 0 0 3px rgba(26,111,196,.12);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+
+    .modal-footer {
+      padding: 0 1.5rem 1.5rem;
+      display: flex;
+      gap: .75rem;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      color: var(--gray-700);
+      border-radius: 8px;
+      padding: .65rem 1rem;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-cancel:hover { background: var(--gray-200); }
+
+    .btn-whatsapp {
+      flex: 2;
+      background: #25D366;
+      border: none;
+      color: var(--white);
+      border-radius: 8px;
+      padding: .65rem 1rem;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      transition: background .15s, transform .12s;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1da851;
+      transform: scale(1.02);
+    }
+
+    .whatsapp-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer {
+      background: var(--blue-deep);
+      color: rgba(255,255,255,.75);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .footer-logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: .01em;
+    }
+
+    .footer-instagram a {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .15s;
+    }
+
+    .footer-instagram a:hover { color: var(--white); }
+
+    .insta-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .footer-copy {
+      font-size: .75rem;
+      opacity: .5;
+    }
+
+    /* ── Responsive tweaks ───────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .header-contact { display: none; }
+      .hero { padding: 2rem 1rem 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    }
+
+    @media (min-width: 768px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🤽</div>
+      <div class="logo-text">
+        <strong>WaterPolo Shop KZ</strong>
+        <span>Экипировка для водного поло</span>
+      </div>
+    </a>
+    <div class="header-contact">
+      <a href="https://wa.me/77755501525">WhatsApp: +7 (775) 550-15-25</a>
+      <span>Алматы, Казахстан</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── Hero ────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <h1>Экипировка для водного поло</h1>
+  <p>Профессиональные шапочки, мячи, ворота и аксессуары с доставкой по Казахстану</p>
+</div>
+
+<!-- ── Main ────────────────────────────────────────────────────────── -->
+<main>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <div class="filters-label">Категории</div>
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-category="all">Все товары</button>
+    </div>
+  </div>
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <div class="product-count" id="productCount"></div>
+  </div>
+
+  <!-- Product grid / states -->
+  <div id="content">
+    <div class="state-box" id="loadingState">
+      <div class="spinner"></div>
+      <p>Загрузка товаров…</p>
+    </div>
+    <div class="state-box" id="errorState" style="display:none">
+      <div class="error-icon">⚠️</div>
+      <p id="errorMsg">Не удалось загрузить данные. Проверьте подключение и настройки таблицы.</p>
+    </div>
+    <div class="state-box" id="emptyState" style="display:none">
+      <div class="error-icon">🔍</div>
+      <p>Товаров в этой категории нет.</p>
+    </div>
+    <div class="grid" id="grid" style="display:none"></div>
+  </div>
+
+</main>
+
+<!-- ── Footer ──────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">WaterPolo Shop KZ 🤽</div>
+    <div class="footer-instagram">
+      <a href="https://instagram.com/waterpoloshop.kz" target="_blank" rel="noopener">
+        <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        @waterpoloshop.kz
+      </a>
+    </div>
+    <div class="footer-copy">© 2025 WaterPolo Shop KZ. Все права защищены.</div>
+  </div>
+</footer>
+
+<!-- ── Order Modal ──────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h2 id="modalTitle">Оформить заказ</h2>
+        <div class="modal-product-info" id="modalProductInfo"></div>
+      </div>
+      <button class="btn-close" id="btnClose" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fieldName">Ваше имя *</label>
+          <input type="text" id="fieldName" placeholder="Иванов Иван" autocomplete="name" required />
+        </div>
+        <div class="form-group">
+          <label for="fieldPhone">Телефон *</label>
+          <input type="tel" id="fieldPhone" placeholder="+7 (777) 000-00-00" autocomplete="tel" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fieldCity">Город *</label>
+          <input type="text" id="fieldCity" placeholder="Алматы" autocomplete="address-level2" required />
+        </div>
+        <div class="form-group">
+          <label for="fieldQty">Количество *</label>
+          <input type="number" id="fieldQty" value="1" min="1" max="99" required />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="btnCancel">Отмена</button>
+      <button class="btn-whatsapp" id="btnSend">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Заказать в WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Script ───────────────────────────────────────────────────────── -->
+<script>
+  // ─── CONFIG — edit these two lines ────────────────────────────────
+  const SHEET_CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRazpSt3g_rQqbqZj0uYt5R1THjNfvI9gfiJr4LlfSn9gGhGjXOmb6-P5LTfepXB6bWRfTlcPIi0loX/pub?gid=0&single=true&output=csv';
+  const WHATSAPP_NUMBER = '77755501525';  // digits only, e.g. 77771234567
+  // ──────────────────────────────────────────────────────────────────
+
+  let allProducts = [];
+  let activeCategory = 'all';
+  let currentProduct = null;
+
+  // ── CSV parser (handles quoted fields with commas/newlines) ────────
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (inQuotes) {
+        if (ch === '"' && next === '"') { field += '"'; i++; }
+        else if (ch === '"')             { inQuotes = false; }
+        else                             { field += ch; }
+      } else {
+        if (ch === '"')       { inQuotes = true; }
+        else if (ch === ',')  { row.push(field.trim()); field = ''; }
+        else if (ch === '\r' && next === '\n') { row.push(field.trim()); rows.push(row); row = []; field = ''; i++; }
+        else if (ch === '\n') { row.push(field.trim()); rows.push(row); row = []; field = ''; }
+        else                  { field += ch; }
+      }
+    }
+    if (field || row.length) { row.push(field.trim()); rows.push(row); }
+    return rows;
+  }
+
+  function rowsToObjects(rows) {
+    if (rows.length < 2) return [];
+    const headers = rows[0].map(h => h.trim());
+    return rows.slice(1).map(r => {
+      const obj = {};
+      headers.forEach((h, i) => { obj[h] = (r[i] || '').trim(); });
+      return obj;
+    }).filter(p => p.ID && p.Name);
+  }
+
+  // ── Fetch & render ─────────────────────────────────────────────────
+  async function loadProducts() {
+    show('loadingState');
+
+    if (!SHEET_CSV_URL || SHEET_CSV_URL === 'YOUR_GOOGLE_SHEET_CSV_URL_HERE') {
+      showError('Вставьте ссылку на Google Таблицу в переменную SHEET_CSV_URL в коде страницы.');
+      return;
+    }
+
+    try {
+      const resp = await fetch(SHEET_CSV_URL);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const text = await resp.text();
+      const rows = parseCSV(text);
+      allProducts = rowsToObjects(rows);
+
+      if (!allProducts.length) {
+        showError('Таблица пуста или имеет неверный формат. Убедитесь, что первая строка — заголовки.');
+        return;
+      }
+
+      buildFilters();
+      renderGrid();
+    } catch (e) {
+      showError(`Ошибка загрузки данных: ${e.message}. Проверьте, что таблица опубликована как CSV.`);
+    }
+  }
+
+  function buildFilters() {
+    const categories = [...new Set(allProducts.map(p => p.Category).filter(Boolean))].sort();
+    const wrap = document.getElementById('filters');
+    // keep "All" button, add categories
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.dataset.category = cat;
+      btn.textContent = cat;
+      btn.addEventListener('click', () => setFilter(cat));
+      wrap.appendChild(btn);
+    });
+    document.querySelector('[data-category="all"]').addEventListener('click', () => setFilter('all'));
+  }
+
+  function setFilter(cat) {
+    activeCategory = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.category === cat);
+    });
+    renderGrid();
+  }
+
+  function renderGrid() {
+    const filtered = activeCategory === 'all'
+      ? allProducts
+      : allProducts.filter(p => p.Category === activeCategory);
+
+    const countEl = document.getElementById('productCount');
+    countEl.innerHTML = `Показано: <strong>${filtered.length}</strong> товар${plural(filtered.length)}`;
+
+    if (!filtered.length) { show('emptyState'); return; }
+
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    filtered.forEach(p => grid.appendChild(createCard(p)));
+    show('grid');
+  }
+
+  function plural(n) {
+    if (n % 100 >= 11 && n % 100 <= 19) return 'ов';
+    const r = n % 10;
+    if (r === 1) return '';
+    if (r >= 2 && r <= 4) return 'а';
+    return 'ов';
+  }
+
+  function createCard(p) {
+    const inStock = p.Stock_Status === 'In Stock';
+    const price = p.Price ? Number(p.Price).toLocaleString('ru-KZ') + ' ₸' : '—';
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    // Image
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'card-img-wrap';
+
+    if (p.Image_URL) {
+      const img = document.createElement('img');
+      img.src = p.Image_URL;
+      img.alt = p.Name;
+      img.loading = 'lazy';
+      img.onerror = () => { imgWrap.innerHTML = `<div class="card-img-placeholder">🤽</div>`; };
+      imgWrap.appendChild(img);
+    } else {
+      imgWrap.innerHTML = `<div class="card-img-placeholder">🤽</div>`;
+    }
+
+    const badge = document.createElement('span');
+    badge.className = `badge-stock ${inStock ? 'in' : 'out'}`;
+    badge.textContent = inStock ? 'В наличии' : 'Нет в наличии';
+    imgWrap.appendChild(badge);
+
+    // Body
+    const body = document.createElement('div');
+    body.className = 'card-body';
+
+    body.innerHTML = `
+      <div class="card-meta">
+        <span class="category-tag">${esc(p.Category || 'Товар')}</span>
+        ${p.Size ? `<span class="size-tag">Размер: ${esc(p.Size)}</span>` : ''}
+      </div>
+      <div class="card-name">${esc(p.Name)}</div>
+      ${p.Description ? `<div class="card-desc">${esc(p.Description)}</div>` : ''}
+      <div class="card-footer">
+        <div class="card-price">${price}</div>
+        <button class="btn-order" ${inStock ? '' : 'disabled'}
+          data-id="${esc(p.ID)}">
+          ${inStock ? 'Заказать' : 'Нет в наличии'}
+        </button>
+      </div>
+    `;
+
+    body.querySelector('.btn-order')?.addEventListener('click', () => openModal(p));
+
+    card.appendChild(imgWrap);
+    card.appendChild(body);
+    return card;
+  }
+
+  // ── Modal ──────────────────────────────────────────────────────────
+  function openModal(product) {
+    currentProduct = product;
+    const price = product.Price ? Number(product.Price).toLocaleString('ru-KZ') + ' ₸' : '—';
+    document.getElementById('modalProductInfo').textContent =
+      `${product.Name}${product.Size ? ' · Размер: ' + product.Size : ''} · ${price}`;
+    document.getElementById('fieldQty').value = 1;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.getElementById('fieldName').focus();
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    currentProduct = null;
+  }
+
+  document.getElementById('btnClose').addEventListener('click', closeModal);
+  document.getElementById('btnCancel').addEventListener('click', closeModal);
+  document.getElementById('modalOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  document.getElementById('btnSend').addEventListener('click', () => {
+    const name  = document.getElementById('fieldName').value.trim();
+    const phone = document.getElementById('fieldPhone').value.trim();
+    const city  = document.getElementById('fieldCity').value.trim();
+    const qty   = parseInt(document.getElementById('fieldQty').value) || 1;
+
+    if (!name || !phone || !city) {
+      alert('Пожалуйста, заполните все обязательные поля.');
+      return;
+    }
+
+    if (!currentProduct) return;
+
+    const p = currentProduct;
+    const price = p.Price ? Number(p.Price).toLocaleString('ru-KZ') + ' ₸' : '—';
+    const totalPrice = p.Price
+      ? (Number(p.Price) * qty).toLocaleString('ru-KZ') + ' ₸'
+      : '—';
+
+    const msg = [
+      '🛒 *Новый заказ — WaterPolo Shop KZ*',
+      '',
+      `📦 *Товар:* ${p.Name}`,
+      `📂 *Категория:* ${p.Category || '—'}`,
+      p.Size ? `📏 *Размер:* ${p.Size}` : '',
+      `💰 *Цена за 1 шт.:* ${price}`,
+      `🔢 *Количество:* ${qty} шт.`,
+      `💵 *Итого:* ${totalPrice}`,
+      '',
+      `👤 *Имя:* ${name}`,
+      `📞 *Телефон:* ${phone}`,
+      `🏙️ *Город:* ${city}`,
+    ].filter(l => l !== null).join('\n');
+
+    const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    closeModal();
+    window.open(wa, '_blank', 'noopener');
+  });
+
+  // ── Helpers ────────────────────────────────────────────────────────
+  function show(id) {
+    ['loadingState','errorState','emptyState','grid'].forEach(s => {
+      const el = document.getElementById(s);
+      if (el) el.style.display = s === id ? (s === 'grid' ? 'grid' : 'flex') : 'none';
+    });
+  }
+
+  function showError(msg) {
+    document.getElementById('errorMsg').textContent = msg;
+    show('errorState');
+  }
+
+  function esc(str) {
+    return String(str)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────
+  loadProducts();
+</script>
+</body>
+</html>
