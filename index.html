@@ -3,31 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WaterPolo Shop KZ — Экипировка для водного поло</title>
-  <meta name="description" content="Магазин экипировки для водного поло в Казахстане. Шапочки, мячи, ворота и аксессуары." />
+  <title>PoloWave — Экипировка для водного поло</title>
+  <meta name="description" content="PoloWave — профессиональная экипировка для водного поло. Шапочки, мячи, ворота и аксессуары с доставкой." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset & base ─────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue-deep:   #0a2a5e;
-      --blue-mid:    #1044a3;
-      --blue-light:  #1a6fc4;
-      --blue-pale:   #e8f0fd;
-      --white:       #ffffff;
-      --gray-50:     #f8fafc;
-      --gray-200:    #e2e8f0;
-      --gray-400:    #94a3b8;
-      --gray-700:    #334155;
-      --green:       #16a34a;
-      --green-bg:    #dcfce7;
-      --red:         #dc2626;
-      --red-bg:      #fee2e2;
-      --shadow-sm:   0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
-      --shadow-md:   0 4px 16px rgba(0,0,0,.10);
-      --shadow-lg:   0 10px 40px rgba(0,0,0,.18);
-      --radius:      12px;
-      --font:        'Segoe UI', system-ui, -apple-system, sans-serif;
+      --navy:       #0b1e3d;
+      --blue:       #2563eb;
+      --blue-dark:  #1d4ed8;
+      --blue-light: #3b82f6;
+      --blue-pale:  #eff6ff;
+      --blue-100:   #dbeafe;
+      --cyan:       #0ea5e9;
+      --white:      #ffffff;
+      --gray-50:    #f8fafc;
+      --gray-100:   #f1f5f9;
+      --gray-200:   #e2e8f0;
+      --gray-300:   #cbd5e1;
+      --gray-400:   #94a3b8;
+      --gray-500:   #64748b;
+      --gray-600:   #475569;
+      --gray-700:   #334155;
+      --gray-900:   #0f172a;
+      --green:      #10b981;
+      --green-bg:   #d1fae5;
+      --red:        #ef4444;
+      --red-bg:     #fee2e2;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md:  0 4px 20px rgba(0,0,0,.08);
+      --shadow-lg:  0 16px 56px rgba(0,0,0,.15);
+      --radius:     14px;
+      --font:       'Inter', system-ui, -apple-system, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -39,17 +49,18 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Header ───────────────────────────────────────────────────── */
+    /* ── Header ─────────────────────────────────────────────────── */
     header {
-      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
-      color: var(--white);
-      padding: 0 1rem;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 1.25rem;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+      box-shadow: 0 1px 12px rgba(0,0,0,.06);
     }
 
     .header-inner {
@@ -58,190 +69,256 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      height: 68px;
       gap: 1rem;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: .6rem;
+      gap: .75rem;
       text-decoration: none;
-      color: inherit;
     }
 
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--white);
-      border-radius: 50%;
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(37,99,235,.35);
     }
 
     .logo-text {
       display: flex;
       flex-direction: column;
-      line-height: 1.1;
+      line-height: 1.2;
     }
 
     .logo-text strong {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: .02em;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -.025em;
     }
 
     .logo-text span {
-      font-size: .65rem;
-      opacity: .75;
-      letter-spacing: .08em;
+      font-size: .62rem;
+      color: var(--gray-400);
+      letter-spacing: .07em;
       text-transform: uppercase;
+      font-weight: 500;
     }
 
     .header-contact {
-      font-size: .8rem;
-      opacity: .85;
-      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .15rem;
     }
 
     .header-contact a {
-      color: inherit;
+      color: var(--gray-700);
       text-decoration: none;
-      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      transition: color .15s;
     }
 
-    /* ── Hero banner ─────────────────────────────────────────────── */
+    .header-contact a:hover { color: var(--blue); }
+
+    .header-contact span {
+      font-size: .72rem;
+      color: var(--gray-400);
+    }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
     .hero {
-      background: linear-gradient(160deg, var(--blue-mid) 0%, var(--blue-light) 60%, #2390e0 100%);
+      background: linear-gradient(150deg, var(--navy) 0%, #1a3a7c 50%, #1e5ea8 100%);
       color: var(--white);
-      padding: 2.5rem 1rem 3rem;
+      padding: 4.5rem 1.25rem 5.5rem;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    .hero-orb {
       position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='rgba(255,255,255,.06)' d='M0,60 C360,110 1080,10 1440,60 L1440,120 L0,120 Z'/%3E%3C/svg%3E") bottom/cover no-repeat;
+      border-radius: 50%;
+      opacity: .07;
+      background: var(--white);
       pointer-events: none;
     }
 
-    .hero h1 {
-      font-size: clamp(1.5rem, 5vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -.02em;
-      margin-bottom: .5rem;
+    .hero-orb-1 {
+      width: 520px;
+      height: 520px;
+      top: -180px;
+      left: -120px;
+    }
+
+    .hero-orb-2 {
+      width: 380px;
+      height: 380px;
+      bottom: -120px;
+      right: -80px;
+    }
+
+    .hero-orb-3 {
+      width: 200px;
+      height: 200px;
+      top: 40px;
+      right: 20%;
+      opacity: .04;
+    }
+
+    .hero-content {
       position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: .32rem .9rem;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.85rem, 6vw, 3.1rem);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: 1.1;
+      margin-bottom: .85rem;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(90deg, #60a5fa 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero p {
-      font-size: clamp(.9rem, 2.5vw, 1.1rem);
-      opacity: .88;
-      max-width: 520px;
+      font-size: clamp(.9rem, 2.5vw, 1.05rem);
+      opacity: .78;
+      max-width: 500px;
       margin: 0 auto;
-      position: relative;
+      line-height: 1.65;
     }
 
-    /* ── Main content ────────────────────────────────────────────── */
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      line-height: 0;
+    }
+
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: 60px;
+    }
+
+    /* ── Main ───────────────────────────────────────────────────── */
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1.25rem;
       flex: 1;
       width: 100%;
     }
 
-    /* ── Filters ─────────────────────────────────────────────────── */
-    .filters-section {
-      margin-bottom: 1.75rem;
-    }
+    /* ── Filters ────────────────────────────────────────────────── */
+    .filters-section { margin-bottom: 2rem; }
 
     .filters-label {
-      font-size: .75rem;
-      font-weight: 600;
+      font-size: .68rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       color: var(--gray-400);
-      margin-bottom: .6rem;
+      margin-bottom: .55rem;
     }
 
     .filters {
       display: flex;
       flex-wrap: wrap;
-      gap: .5rem;
+      gap: .45rem;
     }
 
     .filter-btn {
       background: var(--white);
       border: 1.5px solid var(--gray-200);
-      color: var(--gray-700);
+      color: var(--gray-500);
       border-radius: 999px;
-      padding: .4rem 1rem;
-      font-size: .85rem;
-      font-weight: 500;
+      padding: .42rem 1rem;
+      font-size: .8rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all .18s ease;
+      transition: all .15s ease;
       white-space: nowrap;
+      font-family: var(--font);
     }
 
     .filter-btn:hover {
-      border-color: var(--blue-light);
-      color: var(--blue-light);
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-pale);
     }
 
     .filter-btn.active {
-      background: var(--blue-mid);
-      border-color: var(--blue-mid);
+      background: var(--blue);
+      border-color: var(--blue);
       color: var(--white);
-      box-shadow: 0 2px 8px rgba(16,68,163,.3);
+      box-shadow: 0 2px 10px rgba(37,99,235,.28);
     }
 
-    /* ── Status bar ──────────────────────────────────────────────── */
+    /* ── Status bar ─────────────────────────────────────────────── */
     .status-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: .5rem;
-      margin-bottom: 1.25rem;
-      min-height: 28px;
+      margin-bottom: 1.5rem;
     }
 
     .product-count {
-      font-size: .85rem;
+      font-size: .8rem;
       color: var(--gray-400);
+      font-weight: 500;
     }
 
     .product-count strong {
       color: var(--gray-700);
+      font-weight: 700;
     }
 
-    /* ── Loading & error ─────────────────────────────────────────── */
+    /* ── State boxes ────────────────────────────────────────────── */
     .state-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 4rem 1rem;
+      padding: 5rem 1rem;
       text-align: center;
       gap: 1rem;
     }
-
-    .spinner {
-      width: 44px;
-      height: 44px;
-      border: 3.5px solid var(--blue-pale);
-      border-top-color: var(--blue-mid);
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
 
     .state-box p {
       color: var(--gray-400);
@@ -250,14 +327,60 @@
 
     .error-icon { font-size: 2.5rem; }
 
-    /* ── Product grid ────────────────────────────────────────────── */
+    /* ── Skeleton ───────────────────────────────────────────────── */
+    @keyframes shimmer {
+      0%   { background-position: -600px 0; }
+      100% { background-position:  600px 0; }
+    }
+
+    .skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skeleton-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+
+    .skeleton-img {
+      height: 195px;
+      background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+      background-size: 1200px 100%;
+      animation: shimmer 1.6s infinite linear;
+    }
+
+    .skeleton-body {
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+
+    .skeleton-line {
+      height: 11px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+      background-size: 1200px 100%;
+      animation: shimmer 1.6s infinite linear;
+    }
+
+    .skeleton-line.short  { width: 42%; }
+    .skeleton-line.medium { width: 68%; }
+    .skeleton-line.long   { width: 88%; }
+    .skeleton-line.wide   { width: 100%; height: 36px; border-radius: 8px; margin-top: .25rem; }
+
+    /* ── Product grid ───────────────────────────────────────────── */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 1.25rem;
     }
 
-    /* ── Product card ────────────────────────────────────────────── */
+    /* ── Product card ───────────────────────────────────────────── */
     .card {
       background: var(--white);
       border-radius: var(--radius);
@@ -265,12 +388,12 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: transform .2s ease, box-shadow .2s ease;
+      transition: transform .22s ease, box-shadow .22s ease;
       border: 1px solid var(--gray-200);
     }
 
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-md);
     }
 
@@ -286,12 +409,10 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform .3s ease;
+      transition: transform .35s ease;
     }
 
-    .card:hover .card-img-wrap img {
-      transform: scale(1.04);
-    }
+    .card:hover .card-img-wrap img { transform: scale(1.06); }
 
     .card-img-placeholder {
       width: 100%;
@@ -299,28 +420,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      color: var(--blue-light);
-      opacity: .35;
+      font-size: 3.5rem;
+      opacity: .2;
     }
 
     .badge-stock {
       position: absolute;
-      top: .6rem;
-      right: .6rem;
-      font-size: .7rem;
+      top: .7rem;
+      right: .7rem;
+      font-size: .66rem;
       font-weight: 700;
       letter-spacing: .04em;
       text-transform: uppercase;
-      padding: .25rem .6rem;
+      padding: .22rem .65rem;
       border-radius: 999px;
     }
 
     .badge-stock.in  { background: var(--green-bg); color: var(--green); }
-    .badge-stock.out { background: var(--red-bg);   color: var(--red);   }
+    .badge-stock.out { background: var(--red-bg);   color: var(--red); }
 
     .card-body {
-      padding: 1rem;
+      padding: 1.1rem;
       display: flex;
       flex-direction: column;
       gap: .5rem;
@@ -335,13 +455,13 @@
     }
 
     .category-tag {
-      font-size: .7rem;
-      font-weight: 600;
+      font-size: .66rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .06em;
-      background: var(--blue-pale);
-      color: var(--blue-mid);
-      padding: .2rem .55rem;
+      background: var(--blue-100);
+      color: var(--blue);
+      padding: .2rem .6rem;
       border-radius: 999px;
       white-space: nowrap;
       max-width: 60%;
@@ -350,22 +470,23 @@
     }
 
     .size-tag {
-      font-size: .75rem;
+      font-size: .72rem;
       color: var(--gray-400);
+      font-weight: 500;
       white-space: nowrap;
     }
 
     .card-name {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--blue-deep);
-      line-height: 1.3;
+      color: var(--gray-900);
+      line-height: 1.35;
     }
 
     .card-desc {
-      font-size: .82rem;
-      color: var(--gray-400);
-      line-height: 1.5;
+      font-size: .8rem;
+      color: var(--gray-500);
+      line-height: 1.55;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
@@ -374,52 +495,55 @@
 
     .card-footer {
       margin-top: auto;
-      padding-top: .75rem;
+      padding-top: .85rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: .5rem;
-      border-top: 1px solid var(--gray-200);
+      border-top: 1px solid var(--gray-100);
     }
 
     .card-price {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 800;
-      color: var(--blue-deep);
-      white-space: nowrap;
+      color: var(--gray-900);
+      letter-spacing: -.025em;
     }
 
     .btn-order {
-      background: var(--blue-mid);
+      background: var(--blue);
       color: var(--white);
       border: none;
       border-radius: 8px;
-      padding: .5rem 1.1rem;
-      font-size: .85rem;
-      font-weight: 600;
+      padding: .52rem 1.1rem;
+      font-size: .8rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: background .18s, transform .12s;
+      transition: background .15s, transform .12s, box-shadow .15s;
       white-space: nowrap;
+      font-family: var(--font);
+      letter-spacing: -.01em;
     }
 
     .btn-order:hover:not(:disabled) {
-      background: var(--blue-deep);
-      transform: scale(1.02);
+      background: var(--blue-dark);
+      transform: scale(1.03);
+      box-shadow: 0 4px 14px rgba(37,99,235,.35);
     }
 
     .btn-order:disabled {
-      background: var(--gray-200);
+      background: var(--gray-100);
       color: var(--gray-400);
       cursor: not-allowed;
     }
 
-    /* ── Modal overlay ───────────────────────────────────────────── */
+    /* ── Modal ──────────────────────────────────────────────────── */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(5, 20, 50, .6);
-      backdrop-filter: blur(4px);
+      background: rgba(11,30,61,.6);
+      backdrop-filter: blur(6px);
       z-index: 200;
       align-items: center;
       justify-content: center;
@@ -427,15 +551,13 @@
       animation: fadeIn .18s ease;
     }
 
-    .modal-overlay.open {
-      display: flex;
-    }
+    .modal-overlay.open { display: flex; }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     .modal {
       background: var(--white);
-      border-radius: 16px;
+      border-radius: 20px;
       width: 100%;
       max-width: 460px;
       box-shadow: var(--shadow-lg);
@@ -444,14 +566,14 @@
     }
 
     @keyframes slideUp {
-      from { transform: translateY(24px); opacity: 0; }
+      from { transform: translateY(28px); opacity: 0; }
       to   { transform: translateY(0);    opacity: 1; }
     }
 
     .modal-header {
-      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue-dark) 100%);
       color: var(--white);
-      padding: 1.25rem 1.5rem;
+      padding: 1.4rem 1.6rem;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -459,32 +581,33 @@
     }
 
     .modal-header h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
     }
 
     .modal-header .modal-product-info {
-      font-size: .78rem;
-      opacity: .8;
-      margin-top: .2rem;
-      line-height: 1.4;
+      font-size: .76rem;
+      opacity: .72;
+      margin-top: .25rem;
+      line-height: 1.45;
     }
 
     .btn-close {
-      background: rgba(255,255,255,.15);
+      background: rgba(255,255,255,.14);
       border: none;
       color: var(--white);
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 1.1rem;
-      line-height: 1;
+      font-size: 1rem;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background .15s;
+      font-family: var(--font);
     }
 
     .btn-close:hover { background: rgba(255,255,255,.28); }
@@ -499,11 +622,11 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: .35rem;
+      gap: .3rem;
     }
 
     .form-group label {
-      font-size: .82rem;
+      font-size: .76rem;
       font-weight: 600;
       color: var(--gray-700);
     }
@@ -511,10 +634,10 @@
     .form-group input,
     .form-group select {
       border: 1.5px solid var(--gray-200);
-      border-radius: 8px;
-      padding: .6rem .85rem;
-      font-size: .95rem;
-      font-family: inherit;
+      border-radius: 10px;
+      padding: .65rem .9rem;
+      font-size: .92rem;
+      font-family: var(--font);
       color: var(--gray-700);
       transition: border-color .15s, box-shadow .15s;
       width: 100%;
@@ -524,8 +647,8 @@
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
-      border-color: var(--blue-light);
-      box-shadow: 0 0 0 3px rgba(26,111,196,.12);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.1);
     }
 
     .form-row {
@@ -544,24 +667,25 @@
       flex: 1;
       background: var(--gray-50);
       border: 1.5px solid var(--gray-200);
-      color: var(--gray-700);
-      border-radius: 8px;
-      padding: .65rem 1rem;
-      font-size: .9rem;
+      color: var(--gray-600);
+      border-radius: 10px;
+      padding: .7rem 1rem;
+      font-size: .88rem;
       font-weight: 600;
       cursor: pointer;
       transition: background .15s;
+      font-family: var(--font);
     }
 
-    .btn-cancel:hover { background: var(--gray-200); }
+    .btn-cancel:hover { background: var(--gray-100); }
 
     .btn-whatsapp {
       flex: 2;
-      background: #25D366;
+      background: #22c55e;
       border: none;
       color: var(--white);
-      border-radius: 8px;
-      padding: .65rem 1rem;
+      border-radius: 10px;
+      padding: .7rem 1rem;
       font-size: .9rem;
       font-weight: 700;
       cursor: pointer;
@@ -570,10 +694,11 @@
       justify-content: center;
       gap: .45rem;
       transition: background .15s, transform .12s;
+      font-family: var(--font);
     }
 
     .btn-whatsapp:hover {
-      background: #1da851;
+      background: #16a34a;
       transform: scale(1.02);
     }
 
@@ -581,67 +706,103 @@
       width: 18px;
       height: 18px;
       fill: currentColor;
+      flex-shrink: 0;
     }
 
-    /* ── Footer ──────────────────────────────────────────────────── */
+    /* ── Footer ─────────────────────────────────────────────────── */
+    .footer-wave {
+      line-height: 0;
+      background: var(--gray-50);
+    }
+
+    .footer-wave svg {
+      display: block;
+      width: 100%;
+      height: 50px;
+    }
+
     footer {
-      background: var(--blue-deep);
-      color: rgba(255,255,255,.75);
-      padding: 2rem 1rem;
-      text-align: center;
-      margin-top: auto;
+      background: var(--navy);
+      color: rgba(255,255,255,.6);
     }
 
     .footer-inner {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 2.5rem 1.25rem 2.25rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .75rem;
+      gap: 1.1rem;
     }
 
-    .footer-logo {
-      font-size: 1.1rem;
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .footer-brand-mark {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .footer-brand-name {
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--white);
-      letter-spacing: .01em;
+      letter-spacing: -.025em;
     }
 
-    .footer-instagram a {
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
       display: inline-flex;
       align-items: center;
       gap: .4rem;
-      color: rgba(255,255,255,.85);
+      color: rgba(255,255,255,.65);
       text-decoration: none;
-      font-size: .9rem;
+      font-size: .84rem;
       font-weight: 500;
       transition: color .15s;
     }
 
-    .footer-instagram a:hover { color: var(--white); }
+    .footer-links a:hover { color: var(--white); }
 
-    .insta-icon {
-      width: 18px;
-      height: 18px;
+    .footer-icon {
+      width: 16px;
+      height: 16px;
       fill: currentColor;
+      flex-shrink: 0;
     }
 
     .footer-copy {
-      font-size: .75rem;
-      opacity: .5;
+      font-size: .7rem;
+      opacity: .38;
     }
 
-    /* ── Responsive tweaks ───────────────────────────────────────── */
+    /* ── Responsive ─────────────────────────────────────────────── */
     @media (max-width: 480px) {
       .header-contact { display: none; }
-      .hero { padding: 2rem 1rem 2.5rem; }
+      .hero { padding: 3rem 1rem 4.5rem; }
       .form-row { grid-template-columns: 1fr; }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+      .grid, .skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
     }
 
     @media (min-width: 768px) {
-      .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+      .grid, .skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
     }
   </style>
 </head>
@@ -651,14 +812,14 @@
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
-      <div class="logo-icon">🤽</div>
+      <div class="logo-mark">🌊</div>
       <div class="logo-text">
-        <strong>WaterPolo Shop KZ</strong>
-        <span>Экипировка для водного поло</span>
+        <strong>PoloWave</strong>
+        <span>Water Polo Gear</span>
       </div>
     </a>
     <div class="header-contact">
-      <a href="https://wa.me/77755501525">WhatsApp: +7 (775) 550-15-25</a>
+      <a href="https://wa.me/77755501525">+7 (775) 550-15-25</a>
       <span>Алматы, Казахстан</span>
     </div>
   </div>
@@ -666,14 +827,24 @@
 
 <!-- ── Hero ────────────────────────────────────────────────────────── -->
 <div class="hero">
-  <h1>Экипировка для водного поло</h1>
-  <p>Профессиональные шапочки, мячи, ворота и аксессуары с доставкой по Казахстану</p>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🤽 Водное поло</div>
+    <h1>Профессиональная<br><span class="highlight">экипировка</span> для игры</h1>
+    <p>Шапочки, мячи, ворота и аксессуары — всё для водного поло с доставкой по Казахстану</p>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path fill="#f8fafc" d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"/>
+    </svg>
+  </div>
 </div>
 
 <!-- ── Main ────────────────────────────────────────────────────────── -->
 <main>
 
-  <!-- Filters -->
   <div class="filters-section">
     <div class="filters-label">Категории</div>
     <div class="filters" id="filters">
@@ -681,16 +852,13 @@
     </div>
   </div>
 
-  <!-- Status bar -->
   <div class="status-bar">
     <div class="product-count" id="productCount"></div>
   </div>
 
-  <!-- Product grid / states -->
   <div id="content">
-    <div class="state-box" id="loadingState">
-      <div class="spinner"></div>
-      <p>Загрузка товаров…</p>
+    <div id="loadingState">
+      <div class="skeleton-grid" id="skeletonGrid"></div>
     </div>
     <div class="state-box" id="errorState" style="display:none">
       <div class="error-icon">⚠️</div>
@@ -706,18 +874,32 @@
 </main>
 
 <!-- ── Footer ──────────────────────────────────────────────────────── -->
+<div class="footer-wave">
+  <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path fill="#0b1e3d" d="M0,25 C360,50 1080,0 1440,25 L1440,50 L0,50 Z"/>
+  </svg>
+</div>
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">WaterPolo Shop KZ 🤽</div>
-    <div class="footer-instagram">
+    <div class="footer-brand">
+      <div class="footer-brand-mark">🌊</div>
+      <div class="footer-brand-name">PoloWave</div>
+    </div>
+    <div class="footer-links">
       <a href="https://instagram.com/waterpoloshop.kz" target="_blank" rel="noopener">
-        <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="footer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
         @waterpoloshop.kz
       </a>
+      <a href="https://wa.me/77755501525">
+        <svg class="footer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        WhatsApp
+      </a>
     </div>
-    <div class="footer-copy">© 2025 WaterPolo Shop KZ. Все права защищены.</div>
+    <div class="footer-copy">© 2025 PoloWave. Все права защищены.</div>
   </div>
 </footer>
 
@@ -767,24 +949,37 @@
 
 <!-- ── Script ───────────────────────────────────────────────────────── -->
 <script>
-  // ─── CONFIG — edit these two lines ────────────────────────────────
-  const SHEET_CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRazpSt3g_rQqbqZj0uYt5R1THjNfvI9gfiJr4LlfSn9gGhGjXOmb6-P5LTfepXB6bWRfTlcPIi0loX/pub?gid=0&single=true&output=csv';
-  const WHATSAPP_NUMBER = '77755501525';  // digits only, e.g. 77771234567
-  // ──────────────────────────────────────────────────────────────────
+  const SHEET_CSV_URL   = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRazpSt3g_rQqbqZj0uYt5R1THjNfvI9gfiJr4LlfSn9gGhGjXOmb6-P5LTfepXB6bWRfTlcPIi0loX/pub?gid=0&single=true&output=csv';
+  const WHATSAPP_NUMBER = '77755501525';
 
   let allProducts = [];
   let activeCategory = 'all';
   let currentProduct = null;
 
-  // ── CSV parser (handles quoted fields with commas/newlines) ────────
+  // ── Skeleton ────────────────────────────────────────────────────────
+  function buildSkeleton() {
+    const grid = document.getElementById('skeletonGrid');
+    for (let i = 0; i < 6; i++) {
+      const card = document.createElement('div');
+      card.className = 'skeleton-card';
+      card.innerHTML = `
+        <div class="skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line medium"></div>
+          <div class="skeleton-line long"></div>
+          <div class="skeleton-line wide"></div>
+        </div>`;
+      grid.appendChild(card);
+    }
+  }
+
+  // ── CSV parser ──────────────────────────────────────────────────────
   function parseCSV(text) {
     const rows = [];
     let row = [], field = '', inQuotes = false;
-
     for (let i = 0; i < text.length; i++) {
-      const ch = text[i];
-      const next = text[i + 1];
-
+      const ch = text[i], next = text[i + 1];
       if (inQuotes) {
         if (ch === '"' && next === '"') { field += '"'; i++; }
         else if (ch === '"')             { inQuotes = false; }
@@ -811,8 +1006,9 @@
     }).filter(p => p.ID && p.Name);
   }
 
-  // ── Fetch & render ─────────────────────────────────────────────────
+  // ── Fetch & render ──────────────────────────────────────────────────
   async function loadProducts() {
+    buildSkeleton();
     show('loadingState');
 
     if (!SHEET_CSV_URL || SHEET_CSV_URL === 'YOUR_GOOGLE_SHEET_CSV_URL_HERE') {
@@ -842,7 +1038,6 @@
   function buildFilters() {
     const categories = [...new Set(allProducts.map(p => p.Category).filter(Boolean))].sort();
     const wrap = document.getElementById('filters');
-    // keep "All" button, add categories
     categories.forEach(cat => {
       const btn = document.createElement('button');
       btn.className = 'filter-btn';
@@ -867,8 +1062,8 @@
       ? allProducts
       : allProducts.filter(p => p.Category === activeCategory);
 
-    const countEl = document.getElementById('productCount');
-    countEl.innerHTML = `Показано: <strong>${filtered.length}</strong> товар${plural(filtered.length)}`;
+    document.getElementById('productCount').innerHTML =
+      `Показано: <strong>${filtered.length}</strong> товар${plural(filtered.length)}`;
 
     if (!filtered.length) { show('emptyState'); return; }
 
@@ -889,11 +1084,9 @@
   function createCard(p) {
     const inStock = p.Stock_Status === 'In Stock';
     const price = p.Price ? Number(p.Price).toLocaleString('ru-KZ') + ' ₸' : '—';
-
     const card = document.createElement('div');
     card.className = 'card';
 
-    // Image
     const imgWrap = document.createElement('div');
     imgWrap.className = 'card-img-wrap';
 
@@ -913,10 +1106,8 @@
     badge.textContent = inStock ? 'В наличии' : 'Нет в наличии';
     imgWrap.appendChild(badge);
 
-    // Body
     const body = document.createElement('div');
     body.className = 'card-body';
-
     body.innerHTML = `
       <div class="card-meta">
         <span class="category-tag">${esc(p.Category || 'Товар')}</span>
@@ -926,21 +1117,19 @@
       ${p.Description ? `<div class="card-desc">${esc(p.Description)}</div>` : ''}
       <div class="card-footer">
         <div class="card-price">${price}</div>
-        <button class="btn-order" ${inStock ? '' : 'disabled'}
-          data-id="${esc(p.ID)}">
+        <button class="btn-order" ${inStock ? '' : 'disabled'} data-id="${esc(p.ID)}">
           ${inStock ? 'Заказать' : 'Нет в наличии'}
         </button>
       </div>
     `;
 
     body.querySelector('.btn-order')?.addEventListener('click', () => openModal(p));
-
     card.appendChild(imgWrap);
     card.appendChild(body);
     return card;
   }
 
-  // ── Modal ──────────────────────────────────────────────────────────
+  // ── Modal ───────────────────────────────────────────────────────────
   function openModal(product) {
     currentProduct = product;
     const price = product.Price ? Number(product.Price).toLocaleString('ru-KZ') + ' ₸' : '—';
@@ -973,17 +1162,14 @@
       alert('Пожалуйста, заполните все обязательные поля.');
       return;
     }
-
     if (!currentProduct) return;
 
     const p = currentProduct;
     const price = p.Price ? Number(p.Price).toLocaleString('ru-KZ') + ' ₸' : '—';
-    const totalPrice = p.Price
-      ? (Number(p.Price) * qty).toLocaleString('ru-KZ') + ' ₸'
-      : '—';
+    const totalPrice = p.Price ? (Number(p.Price) * qty).toLocaleString('ru-KZ') + ' ₸' : '—';
 
     const msg = [
-      '🛒 *Новый заказ — WaterPolo Shop KZ*',
+      '🌊 *Новый заказ — PoloWave*',
       '',
       `📦 *Товар:* ${p.Name}`,
       `📂 *Категория:* ${p.Category || '—'}`,
@@ -1002,11 +1188,16 @@
     window.open(wa, '_blank', 'noopener');
   });
 
-  // ── Helpers ────────────────────────────────────────────────────────
+  // ── Helpers ─────────────────────────────────────────────────────────
   function show(id) {
     ['loadingState','errorState','emptyState','grid'].forEach(s => {
       const el = document.getElementById(s);
-      if (el) el.style.display = s === id ? (s === 'grid' ? 'grid' : 'flex') : 'none';
+      if (!el) return;
+      if (s === id) {
+        el.style.display = s === 'grid' ? 'grid' : (s === 'loadingState' ? 'block' : 'flex');
+      } else {
+        el.style.display = 'none';
+      }
     });
   }
 
@@ -1024,7 +1215,6 @@
       .replace(/'/g,'&#39;');
   }
 
-  // ── Init ───────────────────────────────────────────────────────────
   loadProducts();
 </script>
 </body>
