@@ -1103,6 +1103,7 @@
 <!-- ── Script ───────────────────────────────────────────────────────── -->
 <script>
   const SHEET_CSV_URL   = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRazpSt3g_rQqbqZj0uYt5R1THjNfvI9gfiJr4LlfSn9gGhGjXOmb6-P5LTfepXB6bWRfTlcPIi0loX/pub?gid=0&single=true&output=csv';
+  const CDN_BASE        = 'https://cdn.jsdelivr.net/gh/dimashtassanbayev/water-polo-kz@main/images/';
   const WHATSAPP_NUMBER = '77755501525';
 
   let allProducts = [];
@@ -1245,14 +1246,12 @@
 
     if (p.Image_URL) {
       const img = document.createElement('img');
-      img.src = p.Image_URL;
+      img.src = CDN_BASE + p.Image_URL;
       img.alt = p.Name;
       img.loading = 'lazy';
       img.width = 400;
       img.height = 300;
-      img.onerror = () => {
-        imgWrap.innerHTML = `<div class="card-img-placeholder" aria-hidden="true">${placeholderSVG()}</div>`;
-      };
+      img.onerror = () => { img.src = 'images/placeholder.jpg'; };
       imgWrap.appendChild(img);
     } else {
       imgWrap.innerHTML = `<div class="card-img-placeholder" aria-hidden="true">${placeholderSVG()}</div>`;
