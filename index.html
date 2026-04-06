@@ -1594,6 +1594,347 @@
 
     .card-img-wrap .img-blur.hidden { opacity: 0; }
 
+    /* ── Phase 3: Mini-cart badge ──────────────────────────────────── */
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy);
+      transition: color var(--dur-fast) ease;
+    }
+
+    .cart-btn:hover { color: var(--sky); }
+
+    .cart-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -2px;
+      right: -4px;
+      background: var(--coral);
+      color: var(--white);
+      font-size: .58rem;
+      font-weight: 700;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3px;
+      line-height: 1;
+      box-shadow: 0 1px 4px rgba(255,122,92,.35);
+    }
+
+    .cart-badge.visible { display: flex; }
+
+    @keyframes cartPop {
+      0%   { transform: scale(0); }
+      60%  { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .cart-badge.pop { animation: cartPop 280ms var(--ease-spring); }
+
+    /* ── Phase 3: Size guide modal ─────────────────────────────────── */
+    .size-guide-link {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--sky);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      cursor: pointer;
+      transition: color var(--dur-fast) ease;
+    }
+
+    .size-guide-link:hover { color: var(--sky-dark); }
+
+    .sizeguide-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,58,92,.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 400;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .sizeguide-overlay.open { display: flex; }
+
+    .sizeguide-modal {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 520px;
+      max-height: calc(100dvh - 2rem);
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      padding: 1.75rem;
+    }
+
+    .sizeguide-modal h3 {
+      font-family: var(--font-d);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-1);
+      margin-bottom: 1rem;
+    }
+
+    .sizeguide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .83rem;
+    }
+
+    .sizeguide-table th,
+    .sizeguide-table td {
+      text-align: left;
+      padding: .55rem .7rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .sizeguide-table th {
+      font-weight: 700;
+      color: var(--text-1);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .sizeguide-table td { color: var(--text-2); }
+
+    .sizeguide-close {
+      float: right;
+      background: var(--bg);
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-2);
+      transition: background var(--dur-fast) ease;
+    }
+
+    .sizeguide-close:hover { background: var(--border-soft); }
+
+    /* ── Phase 3: Reviews section ──────────────────────────────────── */
+    .reviews-section {
+      border-top: 1px solid var(--border-soft);
+      padding-top: 1rem;
+      margin-top: .5rem;
+    }
+
+    .reviews-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-3);
+      margin-bottom: .5rem;
+    }
+
+    .reviews-stars {
+      display: flex;
+      align-items: center;
+      gap: .15rem;
+      margin-bottom: .25rem;
+    }
+
+    .reviews-stars svg {
+      width: 16px;
+      height: 16px;
+      color: #FBBF24;
+    }
+
+    .reviews-stars svg.empty { color: var(--border); }
+
+    .reviews-count {
+      font-size: .74rem;
+      color: var(--text-3);
+      font-weight: 500;
+    }
+
+    .reviews-placeholder {
+      font-size: .78rem;
+      color: var(--text-3);
+      font-style: italic;
+      margin-top: .4rem;
+    }
+
+    /* ── Phase 3: Order summary in order modal ─────────────────────── */
+    .order-summary {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: .9rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .order-summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: .82rem;
+      color: var(--text-2);
+    }
+
+    .order-summary-line.total {
+      font-weight: 700;
+      color: var(--text-1);
+      border-top: 1px solid var(--border);
+      padding-top: .4rem;
+      margin-top: .15rem;
+    }
+
+    /* ── Phase 3: Upsells section ──────────────────────────────────── */
+    .upsells-section {
+      border-top: 1px solid var(--border-soft);
+      padding-top: 1rem;
+      margin-top: .5rem;
+    }
+
+    .upsells-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-3);
+      margin-bottom: .6rem;
+    }
+
+    .upsells-grid {
+      display: flex;
+      gap: .6rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: .25rem;
+    }
+
+    .upsells-grid::-webkit-scrollbar { height: 3px; }
+    .upsells-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+
+    .upsell-card {
+      flex: 0 0 140px;
+      scroll-snap-align: start;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: .65rem;
+      cursor: pointer;
+      transition:
+        background var(--dur-fast) ease,
+        transform var(--dur-fast) var(--ease-spring);
+      border: 1px solid transparent;
+    }
+
+    .upsell-card:hover {
+      background: var(--sky-light);
+      border-color: var(--border);
+      transform: translateY(-2px);
+    }
+
+    .upsell-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: .4rem;
+      background: var(--bg-warm);
+    }
+
+    .upsell-name {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--text-1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .upsell-price {
+      font-size: .68rem;
+      color: var(--text-3);
+      font-weight: 500;
+      margin-top: .1rem;
+    }
+
+    /* ── Phase 3: Product modal image gallery (swipe) ──────────────── */
+    .pmodal-gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg-warm);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      overflow: hidden;
+      touch-action: pan-y;
+      flex-shrink: 0;
+    }
+
+    .pmodal-gallery-track {
+      display: flex;
+      height: 100%;
+      transition: transform 300ms var(--ease-out);
+    }
+
+    .pmodal-gallery-track.dragging {
+      transition: none;
+    }
+
+    .pmodal-gallery-slide {
+      flex: 0 0 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pmodal-gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pmodal-gallery-dots {
+      position: absolute;
+      bottom: .75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .4rem;
+    }
+
+    .pmodal-gallery-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.4);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background var(--dur-fast) ease, transform var(--dur-fast) ease;
+    }
+
+    .pmodal-gallery-dot.active {
+      background: var(--white);
+      transform: scale(1.2);
+    }
+
     /* ── Footer ────────────────────────────────────────────────────── */
     .footer-wave {
       line-height: 0;
@@ -1723,6 +2064,14 @@
       <a href="https://wa.me/77755501525">+7 (775) 550-15-25</a>
       <span>Алматы, Казахстан</span>
     </div>
+    <!-- Phase 3: Mini-cart button -->
+    <button class="cart-btn" id="cartBtn" aria-label="Корзина заказов">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge"></span>
+    </button>
   </div>
 </header>
 
@@ -1933,6 +2282,8 @@
           <input type="number" id="fieldQty" value="1" min="1" max="99" required inputmode="numeric" />
         </div>
       </div>
+      <!-- Phase 3: Order summary preview -->
+      <div class="order-summary" id="orderSummary" style="display:none;"></div>
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" id="btnCancel">Отмена</button>
@@ -1954,15 +2305,37 @@
         <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </button>
-    <div id="pmodalImgWrap"></div>
+    <!-- Phase 3: Image gallery -->
+    <div class="pmodal-gallery" id="pmodalGallery">
+      <div class="pmodal-gallery-track" id="pmodalGalleryTrack"></div>
+      <div class="pmodal-gallery-dots" id="pmodalGalleryDots"></div>
+    </div>
     <div class="pmodal-body">
       <div class="pmodal-meta" id="pmodalMeta"></div>
       <div class="pmodal-name" id="pmodalName"></div>
       <div class="pmodal-price" id="pmodalPrice"></div>
       <div class="pmodal-desc" id="pmodalDesc"></div>
+      <!-- Phase 3: Reviews placeholder -->
+      <div class="reviews-section" id="pmodalReviews">
+        <div class="reviews-label">Отзывы</div>
+        <div class="reviews-stars" id="pmodalStars"></div>
+        <div class="reviews-count" id="pmodalReviewsCount"></div>
+        <div class="reviews-placeholder">Отзывов пока нет. Будьте первым!</div>
+      </div>
       <div id="pmodalSizesWrap">
-        <div class="pmodal-sizes-label">Выберите размер</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+          <div class="pmodal-sizes-label" style="margin-bottom:0">Выберите размер</div>
+          <a href="#" class="size-guide-link" id="sizeGuideLink" role="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.38 3.46L16 2 12 5.5 8 2l-4.38 1.46a2 2 0 00-1.34 2.23l.58 3.47-2.66 2.66 3.74 1.25L3 22l4-2 3 2 3-2 3 2 4-2-1-3.74 3.74-1.25-2.66-2.66.58-3.47a2 2 0 00-1.34-2.23z"/></svg>
+            Таблица размеров
+          </a>
+        </div>
         <div class="pmodal-sizes" id="pmodalSizes" role="group" aria-label="Размеры"></div>
+      </div>
+      <!-- Phase 3: Upsells -->
+      <div class="upsells-section" id="pmodalUpsells">
+        <div class="upsells-label">Вам может понравиться</div>
+        <div class="upsells-grid" id="upsellsGrid"></div>
       </div>
     </div>
     <div class="pmodal-footer">
@@ -1974,6 +2347,33 @@
         Заказать в WhatsApp
       </button>
     </div>
+  </div>
+</div>
+
+<!-- ── Phase 3: Size Guide Modal ───────────────────────────────────── -->
+<div class="sizeguide-overlay" id="sizeguideOverlay" role="dialog" aria-modal="true" aria-labelledby="sizeguideTitle">
+  <div class="sizeguide-modal">
+    <button class="sizeguide-close" id="sizeguideClose" aria-label="Закрыть таблицу размеров">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <h3 id="sizeguideTitle">Таблица размеров</h3>
+    <table class="sizeguide-table">
+      <thead>
+        <tr>
+          <th>Размер</th>
+          <th>Обхват груди (см)</th>
+          <th>Обхват талии (см)</th>
+          <th>Рост (см)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>S</strong></td><td>86–90</td><td>70–74</td><td>165–170</td></tr>
+        <tr><td><strong>M</strong></td><td>90–94</td><td>74–78</td><td>170–175</td></tr>
+        <tr><td><strong>L</strong></td><td>94–98</td><td>78–82</td><td>175–180</td></tr>
+        <tr><td><strong>XL</strong></td><td>98–102</td><td>82–88</td><td>180–185</td></tr>
+        <tr><td><strong>XXL</strong></td><td>102–108</td><td>88–94</td><td>185–190</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -2232,6 +2632,94 @@
   let pmodalSelectedSize = null;
   let pmodalLastFocus = null;
 
+  // Phase 3: Gallery state
+  let gallerySlideIndex = 0;
+  let galleryImages = [];
+
+  function renderGallery(images) {
+    const track = document.getElementById('pmodalGalleryTrack');
+    const dotsWrap = document.getElementById('pmodalGalleryDots');
+    const gallery = document.getElementById('pmodalGallery');
+    track.innerHTML = '';
+    dotsWrap.innerHTML = '';
+    galleryImages = images;
+    gallerySlideIndex = 0;
+
+    if (!images.length) {
+      gallery.style.display = 'none';
+      return;
+    }
+    gallery.style.display = '';
+
+    images.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'pmodal-gallery-slide';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = pmodalProduct ? pmodalProduct.Name : '';
+      img.loading = 'lazy';
+      slide.appendChild(img);
+      track.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.className = 'pmodal-gallery-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Фото ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    updateGalleryPosition();
+    initGallerySwipe();
+  }
+
+  function goToSlide(index) {
+    gallerySlideIndex = index;
+    updateGalleryPosition();
+  }
+
+  function updateGalleryPosition() {
+    const track = document.getElementById('pmodalGalleryTrack');
+    track.style.transform = `translateX(-${gallerySlideIndex * 100}%)`;
+    track.classList.remove('dragging');
+    const dots = document.querySelectorAll('.pmodal-gallery-dot');
+    dots.forEach((d, i) => d.classList.toggle('active', i === gallerySlideIndex));
+  }
+
+  // Phase 3: Swipe support for gallery
+  function initGallerySwipe() {
+    const gallery = document.getElementById('pmodalGallery');
+    const track = document.getElementById('pmodalGalleryTrack');
+    let startX = 0, currentX = 0, isDragging = false;
+
+    const onStart = (x) => { startX = x; isDragging = true; track.classList.add('dragging'); };
+    const onMove = (x) => {
+      if (!isDragging) return;
+      currentX = x;
+      const diff = currentX - startX;
+      const offset = -(gallerySlideIndex * gallery.offsetWidth) + diff;
+      track.style.transform = `translateX(${offset}px)`;
+    };
+    const onEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('dragging');
+      const diff = currentX - startX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0 && gallerySlideIndex < galleryImages.length - 1) gallerySlideIndex++;
+        else if (diff > 0 && gallerySlideIndex > 0) gallerySlideIndex--;
+      }
+      updateGalleryPosition();
+    };
+
+    gallery.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
+    gallery.addEventListener('touchmove', e => onMove(e.touches[0].clientX), { passive: true });
+    gallery.addEventListener('touchend', onEnd);
+
+    gallery.addEventListener('mousedown', e => { e.preventDefault(); onStart(e.clientX); });
+    document.addEventListener('mousemove', e => { if (isDragging) onMove(e.clientX); });
+    document.addEventListener('mouseup', () => { if (isDragging) onEnd(); });
+  }
+
   function openProductModal(product) {
     pmodalProduct = product;
     pmodalSelectedSize = null;
@@ -2239,21 +2727,14 @@
     const inStock = product.Stock_Status === 'In Stock';
     const price = product.Price ? Number(product.Price).toLocaleString('ru-KZ') + '\u00a0\u20B8' : '\u2014';
 
-    // Image
-    const imgWrap = document.getElementById('pmodalImgWrap');
-    imgWrap.innerHTML = '';
-    if (product.Image_URL) {
-      const img = document.createElement('img');
-      img.className = 'pmodal-img';
-      img.src = CDN_BASE + product.Image_URL;
-      img.alt = product.Name;
-      img.width = 680;
-      img.height = 383;
-      img.onerror = () => { img.src = 'images/placeholder.jpg'; };
-      imgWrap.appendChild(img);
-    } else {
-      imgWrap.innerHTML = `<div class="pmodal-img-placeholder" aria-hidden="true">${placeholderSVG()}</div>`;
-    }
+    // Phase 3: Gallery — main image + related images from same category
+    const mainImg = product.Image_URL ? CDN_BASE + product.Image_URL : null;
+    const relatedImages = allProducts
+      .filter(p => p.Category === product.Category && p.Image_URL && p.ID !== product.ID)
+      .slice(0, 3)
+      .map(p => CDN_BASE + p.Image_URL);
+    const galleryImgs = mainImg ? [mainImg, ...relatedImages] : [];
+    renderGallery(galleryImgs);
 
     // Meta badges
     document.getElementById('pmodalMeta').innerHTML = `
@@ -2269,6 +2750,18 @@
     const descEl = document.getElementById('pmodalDesc');
     descEl.textContent = product.Description || '';
     descEl.style.display = product.Description ? '' : 'none';
+
+    // Phase 3: Reviews (placeholder — randomized for demo)
+    const reviewCount = Math.floor(Math.random() * 5) + 1;
+    const reviewAvg = (3.5 + Math.random() * 1.3).toFixed(1);
+    const starsEl = document.getElementById('pmodalStars');
+    const fullStars = Math.round(Number(reviewAvg));
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+      starsHTML += `<svg viewBox="0 0 24 24" fill="currentColor" class="${i > fullStars ? 'empty' : ''}"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>`;
+    }
+    starsEl.innerHTML = starsHTML;
+    document.getElementById('pmodalReviewsCount').textContent = `${reviewAvg} (${reviewCount} отзыв${reviewCount === 1 ? '' : reviewCount < 5 ? 'а' : 'ов')}`;
 
     // Size picker
     const sizesWrap = document.getElementById('pmodalSizesWrap');
@@ -2291,6 +2784,30 @@
       sizesWrap.style.display = '';
     } else {
       sizesWrap.style.display = 'none';
+    }
+
+    // Phase 3: Upsells — show 4 random products from same category
+    const upsellsGrid = document.getElementById('upsellsGrid');
+    const upsells = allProducts
+      .filter(p => p.Category === product.Category && p.ID !== product.ID && p.Image_URL)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4);
+    upsellsGrid.innerHTML = '';
+    if (upsells.length) {
+      document.getElementById('pmodalUpsells').style.display = '';
+      upsells.forEach(u => {
+        const card = document.createElement('div');
+        card.className = 'upsell-card';
+        const uPrice = u.Price ? Number(u.Price).toLocaleString('ru-KZ') + ' ₸' : '';
+        card.innerHTML = `
+          <img src="${CDN_BASE}${u.Image_URL}" alt="${esc(u.Name)}" loading="lazy" />
+          <div class="upsell-name">${esc(u.Name)}</div>
+          <div class="upsell-price">${uPrice}</div>`;
+        card.addEventListener('click', () => openProductModal(u));
+        upsellsGrid.appendChild(card);
+      });
+    } else {
+      document.getElementById('pmodalUpsells').style.display = 'none';
     }
 
     // Order button
@@ -2393,6 +2910,90 @@
     const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     closeModal();
     window.open(wa, '_blank', 'noopener');
+  });
+
+  // Phase 3: Order summary preview update
+  function updateOrderSummary() {
+    const summaryEl = document.getElementById('orderSummary');
+    if (!currentProduct) { summaryEl.style.display = 'none'; return; }
+
+    const qty = parseInt(document.getElementById('fieldQty').value) || 1;
+    const p = currentProduct;
+    const unitPrice = p.Price ? Number(p.Price) : 0;
+    const totalPrice = unitPrice * qty;
+
+    summaryEl.style.display = 'flex';
+    summaryEl.innerHTML = `
+      <div class="order-summary-line">
+        <span>${esc(p.Name)}</span>
+        <span>${unitPrice ? unitPrice.toLocaleString('ru-KZ') + ' ₸' : '—'}</span>
+      </div>
+      <div class="order-summary-line">
+        <span>Количество</span>
+        <span>${qty} шт.</span>
+      </div>
+      <div class="order-summary-line total">
+        <span>Итого</span>
+        <span>${totalPrice ? totalPrice.toLocaleString('ru-KZ') + ' ₸' : '—'}</span>
+      </div>`;
+  }
+
+  // Update summary when quantity changes or modal opens
+  document.getElementById('fieldQty').addEventListener('input', updateOrderSummary);
+  document.getElementById('fieldQty').addEventListener('change', updateOrderSummary);
+
+  // Phase 3: Mini-cart state
+  let cartCount = 0;
+
+  function updateCartBadge() {
+    const badge = document.getElementById('cartBadge');
+    if (cartCount > 0) {
+      badge.textContent = cartCount > 9 ? '9+' : cartCount;
+      badge.classList.add('visible', 'pop');
+      setTimeout(() => badge.classList.remove('pop'), 300);
+    } else {
+      badge.classList.remove('visible');
+    }
+  }
+
+  document.getElementById('cartBtn').addEventListener('click', () => {
+    // Open order modal with last viewed product or show info
+    if (cartCount > 0 && currentProduct) {
+      openModal(currentProduct);
+    } else {
+      alert('Корзина пуста. Выберите товар из каталога.');
+    }
+  });
+
+  // Phase 3: Intercept "Заказать" to add to cart
+  const _origOpenModal = openModal;
+  openModal = function(product) {
+    cartCount++;
+    updateCartBadge();
+    _origOpenModal(product);
+    updateOrderSummary();
+  };
+
+  // Phase 3: Size guide modal
+  const sizeguideOverlay = document.getElementById('sizeguideOverlay');
+
+  document.getElementById('sizeGuideLink').addEventListener('click', e => {
+    e.preventDefault();
+    sizeguideOverlay.classList.add('open');
+  });
+
+  document.getElementById('sizeguideClose').addEventListener('click', () => {
+    sizeguideOverlay.classList.remove('open');
+  });
+
+  sizeguideOverlay.addEventListener('click', e => {
+    if (e.target === sizeguideOverlay) sizeguideOverlay.classList.remove('open');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && sizeguideOverlay.classList.contains('open')) {
+      sizeguideOverlay.classList.remove('open');
+    }
   });
 
   // ── Helpers ─────────────────────────────────────────────────────────
