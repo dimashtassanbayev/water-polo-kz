@@ -2387,6 +2387,12 @@
   let activeCategory = 'all';
   let currentProduct = null;
 
+  // Phase 2: Search, sort, filter state
+  let searchQuery = '';
+  let sortBy = 'default';
+  let maxPrice = Infinity;
+  let inStockOnly = false;
+
   // ── Header scroll shadow ──────────────────────────────────────────
   (function() {
     const header = document.querySelector('header');
@@ -2502,9 +2508,44 @@
   }
 
   function renderGrid() {
-    const filtered = activeCategory === 'all'
-      ? allProducts
+    let filtered = activeCategory === 'all'
+      ? [...allProducts]
       : allProducts.filter(p => p.Category === activeCategory);
+
+    // Phase 2: Search filter
+    if (searchQuery) {
+      filtered = filtered.filter(p =>
+        p.Name.toLowerCase().includes(searchQuery) ||
+        (p.Description && p.Description.toLowerCase().includes(searchQuery)) ||
+        (p.Category && p.Category.toLowerCase().includes(searchQuery))
+      );
+    }
+
+    // Phase 2: Price filter
+    if (maxPrice !== Infinity) {
+      filtered = filtered.filter(p => p.Price && Number(p.Price) <= maxPrice);
+    }
+
+    // Phase 2: Stock filter
+    if (inStockOnly) {
+      filtered = filtered.filter(p => p.Stock_Status === 'In Stock');
+    }
+
+    // Phase 2: Sort
+    switch (sortBy) {
+      case 'price-asc':
+        filtered.sort((a, b) => (Number(a.Price) || 0) - (Number(b.Price) || 0));
+        break;
+      case 'price-desc':
+        filtered.sort((a, b) => (Number(b.Price) || 0) - (Number(a.Price) || 0));
+        break;
+      case 'name-asc':
+        filtered.sort((a, b) => a.Name.localeCompare(b.Name, 'ru'));
+        break;
+      case 'name-desc':
+        filtered.sort((a, b) => b.Name.localeCompare(a.Name, 'ru'));
+        break;
+    }
 
     document.getElementById('productCount').innerHTML =
       `Показано: <strong>${filtered.length}</strong> товар${plural(filtered.length)}`;
@@ -3029,12 +3070,6 @@
    * Phase 2: Search, Sort, Filter Drawer, Suggestions
    * ═══════════════════════════════════════════════════════════════════ */
 
-  // ── State ──────────────────────────────────────────────────────────
-  let searchQuery = '';
-  let sortBy = 'default';
-  let maxPrice = Infinity;
-  let inStockOnly = false;
-
   // ── Search with debounce ──────────────────────────────────────────
   const searchInput = document.getElementById('searchInput');
   const searchClearBtn = document.getElementById('searchClear');
@@ -3156,59 +3191,6 @@
     inStockOnly = false;
     renderGrid();
   });
-
-  // ── Enhanced renderGrid ───────────────────────────────────────────
-  const _originalRenderGrid = renderGrid;
-  renderGrid = function() {
-    let filtered = activeCategory === 'all'
-      ? [...allProducts]
-      : allProducts.filter(p => p.Category === activeCategory);
-
-    // Search filter
-    if (searchQuery) {
-      filtered = filtered.filter(p =>
-        p.Name.toLowerCase().includes(searchQuery) ||
-        (p.Description && p.Description.toLowerCase().includes(searchQuery)) ||
-        (p.Category && p.Category.toLowerCase().includes(searchQuery))
-      );
-    }
-
-    // Price filter
-    if (maxPrice !== Infinity) {
-      filtered = filtered.filter(p => p.Price && Number(p.Price) <= maxPrice);
-    }
-
-    // Stock filter
-    if (inStockOnly) {
-      filtered = filtered.filter(p => p.Stock_Status === 'In Stock');
-    }
-
-    // Sort
-    switch (sortBy) {
-      case 'price-asc':
-        filtered.sort((a, b) => (Number(a.Price) || 0) - (Number(b.Price) || 0));
-        break;
-      case 'price-desc':
-        filtered.sort((a, b) => (Number(b.Price) || 0) - (Number(a.Price) || 0));
-        break;
-      case 'name-asc':
-        filtered.sort((a, b) => a.Name.localeCompare(b.Name, 'ru'));
-        break;
-      case 'name-desc':
-        filtered.sort((a, b) => b.Name.localeCompare(a.Name, 'ru'));
-        break;
-    }
-
-    document.getElementById('productCount').innerHTML =
-      `Показано: <strong>${filtered.length}</strong> товар${plural(filtered.length)}`;
-
-    if (!filtered.length) { show('emptyState'); return; }
-
-    const grid = document.getElementById('grid');
-    grid.innerHTML = '';
-    filtered.forEach(p => grid.appendChild(createCard(p)));
-    show('grid');
-  };
 </script>
 </body>
 </html>
