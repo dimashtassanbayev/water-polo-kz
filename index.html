@@ -568,18 +568,22 @@
       position: absolute;
       top: .6rem;
       right: .6rem;
-      font-size: .6rem;
+      font-size: .62rem;
       font-weight: 700;
       letter-spacing: .05em;
       text-transform: uppercase;
-      padding: .22rem .6rem;
+      padding: .28rem .65rem;
       border-radius: 999px;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
-    .badge-stock.in  { background: rgba(22,163,74,.12); color: var(--green); }
-    .badge-stock.out { background: rgba(220,38,38,.1);  color: var(--red); }
+    .badge-stock.in  {
+      background: rgba(22,163,74,.22);
+      color: #15803D;
+      box-shadow: 0 0 8px rgba(22,163,74,.25);
+    }
+    .badge-stock.out { background: rgba(220,38,38,.15);  color: var(--red); }
 
     .card-body {
       padding: 1.15rem 1.2rem;
@@ -2768,13 +2772,9 @@
     const inStock = product.Stock_Status === 'In Stock';
     const price = product.Price ? Number(product.Price).toLocaleString('ru-KZ') + '\u00a0\u20B8' : '\u2014';
 
-    // Phase 3: Gallery — main image + related images from same category
+    // Phase 3: Gallery — only the product's own image (no related images)
     const mainImg = product.Image_URL ? CDN_BASE + product.Image_URL : null;
-    const relatedImages = allProducts
-      .filter(p => p.Category === product.Category && p.Image_URL && p.ID !== product.ID)
-      .slice(0, 3)
-      .map(p => CDN_BASE + p.Image_URL);
-    const galleryImgs = mainImg ? [mainImg, ...relatedImages] : [];
+    const galleryImgs = mainImg ? [mainImg] : [];
     renderGallery(galleryImgs);
 
     // Meta badges
