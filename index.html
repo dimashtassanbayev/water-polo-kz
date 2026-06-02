@@ -336,51 +336,63 @@
       height: 48px;
     }
 
-    /* ── Partners ─────────────────────────────────────────────────── */
+    /* ── Partners ticker ──────────────────────────────────────────── */
     .partners-strip {
-      background: #fff;
-      border-bottom: 1px solid #e8ecf0;
-      padding: 1.25rem 1.5rem;
+      background: linear-gradient(90deg, #0d47a1 0%, #1565c0 40%, #0277bd 100%);
+      overflow: hidden;
+      padding: 0;
+      position: relative;
     }
-    .partners-inner {
-      max-width: 1200px;
-      margin: 0 auto;
+    .partners-strip::before,
+    .partners-strip::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .partners-strip::before {
+      left: 0;
+      background: linear-gradient(to right, #0d47a1, transparent);
+    }
+    .partners-strip::after {
+      right: 0;
+      background: linear-gradient(to left, #0277bd, transparent);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker-scroll 18s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-item {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .partners-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #8a95a3;
-      text-transform: uppercase;
-      letter-spacing: .08em;
+      gap: 1.5rem;
+      padding: 0.85rem 2.5rem;
       white-space: nowrap;
     }
-    .partners-divider {
-      width: 1px;
-      height: 1.2rem;
-      background: #dce1e7;
-    }
-    .partners-list {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
+    .ticker-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.45);
+      flex-shrink: 0;
     }
     .partner-name {
-      font-size: 1rem;
+      font-size: 0.88rem;
       font-weight: 800;
-      letter-spacing: .06em;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      color: #2c3e50;
-      opacity: .7;
-      transition: opacity .2s;
+      color: #fff;
     }
-    .partner-name:hover { opacity: 1; }
+    .partner-name.triumph { color: #ffd54f; }
+    .partner-name.turbo   { color: #80deea; }
+    .partner-name.arena   { color: #a5d6a7; }
 
     /* ── Main ──────────────────────────────────────────────────────── */
     main {
@@ -2175,15 +2187,34 @@
 </div>
 
 <!-- ── Partners ──────────────────────────────────────────────────────── -->
-<div class="partners-strip">
-  <div class="partners-inner">
-    <span class="partners-label">Работаем с</span>
-    <div class="partners-divider"></div>
-    <div class="partners-list">
-      <span class="partner-name">Triumph</span>
-      <span class="partner-name">Turbo</span>
-      <span class="partner-name">Arena Kazakhstan</span>
-    </div>
+<div class="partners-strip" aria-label="Наши партнёры">
+  <div class="ticker-track" aria-hidden="true">
+    <!-- first copy -->
+    <div class="ticker-item"><span class="partner-name triumph">Triumph</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name turbo">Turbo</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name arena">Arena Kazakhstan</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name triumph">Triumph</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name turbo">Turbo</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name arena">Arena Kazakhstan</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="partner-name triumph">Triumph</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name turbo">Turbo</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name arena">Arena Kazakhstan</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name triumph">Triumph</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name turbo">Turbo</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="partner-name arena">Arena Kazakhstan</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span></div>
   </div>
 </div>
 
