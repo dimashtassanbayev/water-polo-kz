@@ -2088,8 +2088,226 @@
       opacity: .35;
     }
 
+    /* ── Hero split layout + product showcase (redesign) ──────────── */
+    .hero { text-align: left; }
+
+    .hero-content {
+      max-width: 1140px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .hero-text { max-width: 560px; }
+    .hero-text .hero-badge { margin-bottom: 1.2rem; }
+    .hero p { margin-left: 0; margin-right: 0; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      align-items: center;
+    }
+
+    .hero .trust-bar { justify-content: flex-start; }
+
+    .hero-showcase {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 1rem;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-height: 460px;
+      margin-left: auto;
+    }
+
+    .hero-tile {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--bg-warm);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-soft);
+    }
+
+    .hero-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 600ms var(--ease-out);
+    }
+
+    .hero-tile:hover img { transform: scale(1.06); }
+    .hero-tile--main { grid-row: 1 / 3; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-tile { animation: heroFloat 6s var(--ease-spring) infinite; }
+      .hero-tile:nth-child(2) { animation-delay: .6s; }
+      .hero-tile:nth-child(3) { animation-delay: 1.2s; }
+      @keyframes heroFloat {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-8px); }
+      }
+    }
+
+    .hero-showcase-badge {
+      position: absolute;
+      left: -14px;
+      bottom: 18px;
+      background: var(--white);
+      border-radius: 999px;
+      padding: .5rem 1rem .5rem .55rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      box-shadow: var(--shadow-lg);
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--navy);
+      z-index: 2;
+    }
+
+    .hero-showcase-badge .badge-dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 820px) {
+      .hero { text-align: center; }
+      .hero-content { grid-template-columns: 1fr; gap: 2rem; max-width: 560px; }
+      .hero-text { max-width: none; margin: 0 auto; }
+      .hero-actions { justify-content: center; }
+      .hero .trust-bar { justify-content: center; }
+      .hero-showcase {
+        order: -1;
+        max-height: 320px;
+        aspect-ratio: 16 / 11;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ── Category tiles band ───────────────────────────────────────── */
+    .category-band {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem .5rem;
+      width: 100%;
+    }
+
+    .category-band-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .category-band-head h2 {
+      font-family: var(--font-d);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.03em;
+    }
+
+    .category-band-head p {
+      font-size: .85rem;
+      color: var(--text-3);
+    }
+
+    .category-tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: .9rem;
+    }
+
+    .category-tile {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-warm);
+      box-shadow: var(--shadow-sm);
+      font-family: var(--font);
+      transition:
+        transform var(--dur-base) var(--ease-spring),
+        box-shadow var(--dur-base) ease;
+      touch-action: manipulation;
+    }
+
+    .category-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .category-tile:focus-visible {
+      outline: 2px solid var(--sky);
+      outline-offset: 2px;
+    }
+
+    .category-tile img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms var(--ease-out);
+    }
+
+    .category-tile:hover img { transform: scale(1.07); }
+
+    .category-tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26,58,92,0) 35%, rgba(26,58,92,.78) 100%);
+    }
+
+    .category-tile-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: .85rem .9rem;
+      display: flex;
+      flex-direction: column;
+      gap: .1rem;
+      text-align: left;
+    }
+
+    .category-tile-name {
+      font-size: .92rem;
+      font-weight: 800;
+      color: #fff;
+      font-family: var(--font-d);
+      letter-spacing: -.01em;
+      text-shadow: 0 1px 4px rgba(0,0,0,.3);
+    }
+
+    .category-tile-count {
+      font-size: .7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.85);
+    }
+
     /* ── Responsive ────────────────────────────────────────────────── */
     @media (max-width: 480px) {
+      .hero-showcase { max-height: 260px; gap: .6rem; }
+      .hero-showcase-badge { left: 50%; transform: translateX(-50%); bottom: -14px; }
+      .category-tiles { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+      .category-tile { aspect-ratio: 1 / 1; }
       .header-contact { display: none; }
       .header-inner { height: 60px; }
       .hero { padding: 3rem 1rem 4rem; }
@@ -2148,43 +2366,64 @@
 <!-- ── Hero ────────────────────────────────────────────────────────── -->
 <div class="hero" role="banner">
   <div class="hero-content">
-    <div class="hero-badge" aria-hidden="true">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8 2 4 6 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4-4-8-8-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
-      </svg>
-      Водное поло
+    <div class="hero-text">
+      <div class="hero-badge" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8 2 4 6 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4-4-8-8-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        Водное поло
+      </div>
+      <h1>Профессиональная<br><span class="highlight">экипировка</span> для игры</h1>
+      <p>Шапочки, мячи, экипировка и аксессуары — всё для водного поло с доставкой по Казахстану</p>
+      <div class="hero-actions">
+        <a href="#main-content" class="hero-cta" aria-label="Перейти к каталогу товаров">
+          Смотреть каталог
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="trust-bar">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Гарантия качества
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="3" width="15" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 8h5l3 3v5a2 2 0 01-2 2h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Доставка по всему Казахстану и СНГ
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Выбор спортсменов
+        </div>
+      </div>
     </div>
-    <h1>Профессиональная<br><span class="highlight">экипировка</span> для игры</h1>
-    <p>Шапочки, мячи, экипировка и аксессуары — всё для водного поло с доставкой по Казахстану</p>
-    <a href="#main-content" class="hero-cta" aria-label="Перейти к каталогу товаров">
-      Смотреть каталог
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <div class="trust-bar">
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Гарантия качества
+    <div class="hero-showcase" aria-hidden="true">
+      <div class="hero-tile hero-tile--main">
+        <img src="images/swimsuit-turbo-neon-zebra.png" alt="" loading="eager" />
       </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="3" width="15" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
-          <path d="M16 8h5l3 3v5a2 2 0 01-2 2h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2"/>
-          <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        Доставка по всему Казахстану и СНГ
+      <div class="hero-tile">
+        <img src="images/briefs-turbo-superhero-pop-art.png" alt="" loading="eager" />
       </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Выбор спортсменов
+      <div class="hero-tile">
+        <img src="images/briefs-turbo-japan-koi.png" alt="" loading="eager" />
       </div>
+      <span class="hero-showcase-badge">
+        <span class="badge-dot">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Официальный Turbo
+      </span>
     </div>
   </div>
   <div class="hero-wave" aria-hidden="true">
@@ -2225,6 +2464,15 @@
     <div class="ticker-item"><span class="ticker-dot"></span></div>
   </div>
 </div>
+
+<!-- ── Shop by category ─────────────────────────────────────────────── -->
+<section class="category-band" id="categoryBand" style="display:none" aria-labelledby="categoryBandTitle">
+  <div class="category-band-head">
+    <h2 id="categoryBandTitle">Категории товаров</h2>
+    <p>Выберите категорию, чтобы начать</p>
+  </div>
+  <div class="category-tiles" id="categoryTiles"></div>
+</section>
 
 <!-- ── Main ────────────────────────────────────────────────────────── -->
 <main id="main-content">
@@ -2573,6 +2821,7 @@
       }
 
       buildFilters();
+      buildCategoryTiles();
       renderGrid();
     } catch (e) {
       showError(`Ошибка загрузки данных: ${e.message}. Проверьте, что таблица опубликована как CSV.`);
@@ -2592,6 +2841,49 @@
       wrap.appendChild(btn);
     });
     wrap.querySelector('[data-category="all"]').addEventListener('click', () => setFilter('all'));
+  }
+
+  // Visual "shop by category" tiles — built from product data
+  function buildCategoryTiles() {
+    const band = document.getElementById('categoryBand');
+    const wrap = document.getElementById('categoryTiles');
+    if (!band || !wrap) return;
+
+    // Aggregate: count per category + first available image as the tile cover
+    const map = new Map();
+    allProducts.forEach(p => {
+      const cat = (p.Category || '').trim();
+      if (!cat) return;
+      if (!map.has(cat)) map.set(cat, { count: 0, img: '' });
+      const entry = map.get(cat);
+      entry.count++;
+      if (!entry.img && p.Image_URL) entry.img = p.Image_URL;
+    });
+
+    const cats = [...map.entries()].sort((a, b) => b[1].count - a[1].count);
+    if (!cats.length) return;
+
+    wrap.innerHTML = '';
+    cats.forEach(([cat, info]) => {
+      const tile = document.createElement('button');
+      tile.className = 'category-tile';
+      tile.type = 'button';
+      tile.setAttribute('aria-label', `${cat} — ${info.count} товар${plural(info.count)}`);
+      tile.innerHTML = `
+        ${info.img ? `<img src="${CDN_BASE}${info.img}" alt="" loading="lazy" />` : ''}
+        <span class="category-tile-overlay"></span>
+        <span class="category-tile-content">
+          <span class="category-tile-name">${esc(cat)}</span>
+          <span class="category-tile-count">${info.count} товар${plural(info.count)}</span>
+        </span>`;
+      tile.addEventListener('click', () => {
+        setFilter(cat);
+        document.getElementById('main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      wrap.appendChild(tile);
+    });
+
+    band.style.display = '';
   }
 
   function setFilter(cat) {
