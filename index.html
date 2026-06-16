@@ -2102,6 +2102,14 @@
       .grid, .skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0F6MZD8ST"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y0F6MZD8ST');
+  </script>
 </head>
 <body>
 
@@ -2591,6 +2599,7 @@
     document.querySelectorAll('.filter-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.category === cat);
     });
+    gtag('event', 'filter_category', { category: cat });
     renderGrid();
   }
 
@@ -2735,6 +2744,11 @@
   // ── Order Modal ────────────────────────────────────────────────────
   function openModal(product) {
     currentProduct = product;
+    gtag('event', 'add_to_cart', {
+      currency: 'KZT',
+      value: Number(product.Price) || 0,
+      items: [{ item_id: product.ID, item_name: product.Name, item_category: product.Category }]
+    });
     const price = product.Price ? Number(product.Price).toLocaleString('ru-KZ') + '\u00a0\u20B8' : '\u2014';
     document.getElementById('modalProductInfo').textContent =
       `${product.Name}${product.Size ? ' \u00b7 Размер: ' + product.Size : ''} \u00b7 ${price}`;
@@ -2851,6 +2865,11 @@
   function openProductModal(product) {
     pmodalProduct = product;
     pmodalSelectedSize = null;
+    gtag('event', 'view_item', {
+      currency: 'KZT',
+      value: Number(product.Price) || 0,
+      items: [{ item_id: product.ID, item_name: product.Name, item_category: product.Category }]
+    });
 
     const inStock = product.Stock_Status === 'In Stock';
     const price = product.Price ? Number(product.Price).toLocaleString('ru-KZ') + '\u00a0\u20B8' : '\u2014';
@@ -2968,6 +2987,11 @@
       `\uD83D\uDCB0 *\u0426\u0435\u043D\u0430:* ${price}`,
     ].filter(Boolean).join('\n');
     const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    gtag('event', 'generate_lead', {
+      currency: 'KZT',
+      value: Number(p.Price) || 0,
+      items: [{ item_id: p.ID, item_name: p.Name, item_category: p.Category }]
+    });
     closeProductModal();
     window.open(wa, '_blank', 'noopener');
   });
@@ -3020,6 +3044,11 @@
     ].filter(l => l !== null).join('\n');
 
     const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    gtag('event', 'generate_lead', {
+      currency: 'KZT',
+      value: (Number(p.Price) || 0) * qty,
+      items: [{ item_id: p.ID, item_name: p.Name, item_category: p.Category, quantity: qty }]
+    });
     closeModal();
     window.open(wa, '_blank', 'noopener');
   });
@@ -3155,8 +3184,10 @@
     searchDebounce = setTimeout(() => {
       searchQuery = val.toLowerCase();
       renderGrid();
-      if (val.length >= 2) showSuggestions(val);
-      else hideSuggestions();
+      if (val.length >= 2) {
+        showSuggestions(val);
+        gtag('event', 'search', { search_term: val });
+      } else hideSuggestions();
     }, 250);
   });
 
