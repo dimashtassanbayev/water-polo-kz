@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Waterpoloshop — Экипировка для водного поло</title>
   <meta name="description" content="Waterpoloshop — профессиональная экипировка для водного поло. Шапочки, мячи, экипировка и аксессуары с доставкой." />
+  <link rel="canonical" href="https://waterpoloshop.kz/" />
+  <meta name="theme-color" content="#3BA4E5" />
+
+  <!-- Open Graph (WhatsApp, Telegram, Facebook link previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Waterpoloshop" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content="Waterpoloshop — Экипировка для водного поло" />
+  <meta property="og:description" content="Профессиональная экипировка для водного поло: плавки, купальники, шапки, аксессуары. Доставка по Казахстану и СНГ." />
+  <meta property="og:url" content="https://waterpoloshop.kz/" />
+  <meta property="og:image" content="https://wsrv.nl/?url=https%3A//cdn.jsdelivr.net/gh/dimashtassanbayev/water-polo-kz%40main/images/swimsuit-turbo-neon-zebra.png&w=1200&h=630&fit=contain&bg=1A3A5C&output=jpg&q=85" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Waterpoloshop — Экипировка для водного поло" />
+  <meta name="twitter:description" content="Профессиональная экипировка для водного поло: плавки, купальники, шапки, аксессуары. Доставка по Казахстану и СНГ." />
+  <meta name="twitter:image" content="https://wsrv.nl/?url=https%3A//cdn.jsdelivr.net/gh/dimashtassanbayev/water-polo-kz%40main/images/swimsuit-turbo-neon-zebra.png&w=1200&h=630&fit=contain&bg=1A3A5C&output=jpg&q=85" />
+
+  <link rel="preconnect" href="https://wsrv.nl" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
@@ -2410,13 +2431,13 @@
     </div>
     <div class="hero-showcase" aria-hidden="true">
       <div class="hero-tile hero-tile--main">
-        <img src="images/swimsuit-turbo-neon-zebra.png" alt="" loading="eager" />
+        <img src="https://wsrv.nl/?url=https%3A//cdn.jsdelivr.net/gh/dimashtassanbayev/water-polo-kz%40main/images/swimsuit-turbo-neon-zebra.png&w=700&output=webp&q=82" alt="" fetchpriority="high" decoding="async" onerror="this.src='images/swimsuit-turbo-neon-zebra.png'" />
       </div>
       <div class="hero-tile">
-        <img src="images/briefs-turbo-superhero-pop-art.png" alt="" loading="eager" />
+        <img src="https://wsrv.nl/?url=https%3A//cdn.jsdelivr.net/gh/dimashtassanbayev/water-polo-kz%40main/images/briefs-turbo-superhero-pop-art.png&w=500&output=webp&q=82" alt="" decoding="async" onerror="this.src='images/briefs-turbo-superhero-pop-art.png'" />
       </div>
       <div class="hero-tile">
-        <img src="images/briefs-turbo-japan-koi.png" alt="" loading="eager" />
+        <img src="https://wsrv.nl/?url=https%3A//cdn.jsdelivr.net/gh/dimashtassanbayev/water-polo-kz%40main/images/briefs-turbo-japan-koi.png&w=500&output=webp&q=82" alt="" decoding="async" onerror="this.src='images/briefs-turbo-japan-koi.png'" />
       </div>
       <span class="hero-showcase-badge">
         <span class="badge-dot">
@@ -2726,6 +2747,21 @@
   const CDN_BASE        = 'https://cdn.jsdelivr.net/gh/dimashtassanbayev/water-polo-kz@main/images/';
   const WHATSAPP_NUMBER = '77080412449';
 
+  // Image optimization: route source PNGs through wsrv.nl, which serves
+  // resized WebP/AVIF on the fly (≈98% smaller). Falls back to the original
+  // PNG via setImgFallback if the optimizer is ever unreachable.
+  function imgURL(path, width) {
+    if (!path) return '';
+    return `https://wsrv.nl/?url=${encodeURIComponent(CDN_BASE + path)}&w=${width}&output=webp&q=82`;
+  }
+
+  function setImgFallback(img, path) {
+    img.onerror = () => {
+      img.onerror = () => { img.src = 'images/placeholder.jpg'; img.classList.add('loaded'); };
+      img.src = CDN_BASE + path; // original, unoptimized PNG
+    };
+  }
+
   let allProducts = [];
   let activeCategory = 'all';
   let currentProduct = null;
@@ -2870,7 +2906,7 @@
       tile.type = 'button';
       tile.setAttribute('aria-label', `${cat} — ${info.count} товар${plural(info.count)}`);
       tile.innerHTML = `
-        ${info.img ? `<img src="${CDN_BASE}${info.img}" alt="" loading="lazy" />` : ''}
+        ${info.img ? `<img src="${imgURL(info.img, 500)}" alt="" loading="lazy" decoding="async" />` : ''}
         <span class="category-tile-overlay"></span>
         <span class="category-tile-content">
           <span class="category-tile-name">${esc(cat)}</span>
@@ -2965,13 +3001,14 @@
 
     if (p.Image_URL) {
       const img = document.createElement('img');
-      img.src = CDN_BASE + p.Image_URL;
       img.alt = p.Name;
       img.loading = 'lazy';
+      img.decoding = 'async';
       img.width = 400;
       img.height = 300;
       img.onload = () => { img.classList.add('loaded'); };
-      img.onerror = () => { img.src = 'images/placeholder.jpg'; img.classList.add('loaded'); };
+      setImgFallback(img, p.Image_URL);
+      img.src = imgURL(p.Image_URL, 600);
       imgWrap.appendChild(img);
     } else {
       imgWrap.innerHTML = `<div class="card-img-placeholder" aria-hidden="true">${placeholderSVG()}</div>`;
@@ -3167,7 +3204,7 @@
     const price = product.Price ? Number(product.Price).toLocaleString('ru-KZ') + '\u00a0\u20B8' : '\u2014';
 
     // Phase 3: Gallery — only the product's own image (no related images)
-    const mainImg = product.Image_URL ? CDN_BASE + product.Image_URL : null;
+    const mainImg = product.Image_URL ? imgURL(product.Image_URL, 900) : null;
     const galleryImgs = mainImg ? [mainImg] : [];
     renderGallery(galleryImgs);
 
@@ -3223,7 +3260,7 @@
         card.className = 'upsell-card';
         const uPrice = u.Price ? Number(u.Price).toLocaleString('ru-KZ') + ' ₸' : '';
         card.innerHTML = `
-          <img src="${CDN_BASE}${u.Image_URL}" alt="${esc(u.Name)}" loading="lazy" />
+          <img src="${imgURL(u.Image_URL, 300)}" alt="${esc(u.Name)}" loading="lazy" decoding="async" />
           <div class="upsell-name">${esc(u.Name)}</div>
           <div class="upsell-price">${uPrice}</div>`;
         card.addEventListener('click', () => openProductModal(u));
@@ -3508,7 +3545,7 @@
       btn.setAttribute('role', 'option');
       const price = p.Price ? Number(p.Price).toLocaleString('ru-KZ') + ' ₸' : '—';
       const thumb = p.Image_URL
-        ? `<img src="${CDN_BASE}${p.Image_URL}" alt="" loading="lazy" />`
+        ? `<img src="${imgURL(p.Image_URL, 90)}" alt="" loading="lazy" decoding="async" />`
         : '';
       btn.innerHTML = `
         ${thumb}
